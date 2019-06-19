@@ -1,61 +1,65 @@
-<!-- This is a first example of using a template -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <title>My photo site</title>
 
-<head>
+   <script src="js/jquery-2.1.4.min.js"></script>
+   <script src="js/handlebars-v3.0.3.js"></script>
+   <script src="js/bootstrap.min.js"></script>
 
-<!-- include our libraries and css files -->
+   <link href="css/bootstrap_blue.css" rel="stylesheet">
+   <link href="css/style.css" rel = "stylesheet">
 
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/handlebars-v3.0.3.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-<script src="js/bootstrap.min.js"></script>
+  </head>
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/gallery.css" rel="stylesheet">
+  <body>
 
-</head>
-
-<body>
-
-
-    <!-- the content of the web page starts off empty
-     because we will fill it later from the template -->
+    <!-- The body will be empby but for a container wher the content will -->
+    <!-- be put in when generated -->
     <div id="content">
     </div>
 
-    <!-- this is our template
-      it displays an image with a title and author headings
-      the bits in curly brackets {{}} are template expressions -->
+    <!-- The template -->
     <script id="image-template" type="text/x-handlebars-template">
       <div class="title">
-		    <h1>{{title}}</h1>
-    		<h3 class="author">
-    		  {{author}}
-    		</h3>
-		    <img  style="height:600" src="{{src}}"/>
+        <h1>{{title}}</h1>
+        <h3 class="description">
+          {{description}}
+        </h3>
+        <img class="medium" src={{src}}/>
       </div>
     </script>
 
-  <!-- javascript code to fill the template -->
-  <script type="text/javascript">
+    <!-- Code to fill in the template -->
+    <script type="text/javascript">
 
-    // grab our template code from the DOM
-    var source   = $("#image-template").html();
+      // Indicate what code is the template
+      var source = $("#image-template").html();
 
-    // compile the template so we can use it
-    var template = Handlebars.compile(source);
+      // Compile the template
+      var template = Handlebars.compile(source);
 
-    // create some data
-    var data = {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/600px-The_Earth_seen_from_Apollo_17.jpg ", 
-      title:"The Earth seen from Apollo 17",
-      author:"Ed g2s"
-    };
+      // Create the data to put in the page
+      var data = {
+        src:"/images/img_1.jpg",
+        title:"Graffiti",
+        description:"An old building wall full of graffiti"
+      };
 
-    // generate HTML from the data
-    var html    = template(data);
+      // Generate the html from the data
+      var html = template(data);
 
-    // add the HTML to the content div
-    $('#content').html(html);
-  </script>
+      // Add the html to the content div
+      $('#content').html(html);
 
-</body>
+    </script>
+
+  </body>
+</html>
